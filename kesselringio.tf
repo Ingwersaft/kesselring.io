@@ -14,7 +14,7 @@ terraform {
 }
 resource "aws_s3_bucket" "b" {
   bucket = "${var.site}"
-  acl = "public-read"
+  acl = "private"
   policy = <<POLICY
 {
   "Version": "2012-10-17",
