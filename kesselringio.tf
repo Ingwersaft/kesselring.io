@@ -129,34 +129,36 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     "type" = "${var.tag}"
   }
 }
-data "archive_file" "lambda_zip" {
-  type = "zip"
-  source_file = "invalidate.py"
-  output_path = "invalidate.zip"
-}
-
-resource "aws_lambda_function" "func" {
-  filename = "${data.archive_file.lambda_zip.output_path}"
-  function_name = "invalidate_${var.site-without-dots}"
-  role = "${aws_iam_role.iam_for_lambda.arn}"
-  handler = "invalidate.handler"
-  source_code_hash = "${base64sha256(file(data.archive_file.lambda_zip.output_path))}"
-  runtime = "python2.7"
-  environment {
-    variables {
-      distribution = "${aws_cloudfront_distribution.cloudfront.id}"
+resource "aws_sqs_queue" "s3_changed_queue" {
+  name = "terraform-${var.site-without-dots}-queue"
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "sqs:*",
+      "Resource": "arn:aws:sqs:*:*:*",
+      "Condition": {
+        "ArnEquals": { "aws:SourceArn": "${aws_s3_bucket.b.arn}" }
+      }
     }
+  ]
+}
+POLICY
+  tags {
+    "type" = "${var.tag}"
   }
 }
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
   bucket = "${aws_s3_bucket.b.id}"
-
-  lambda_function {
-    lambda_function_arn = "${aws_lambda_function.func.arn}"
+  queue {
     events = [
       "s3:ObjectCreated:*",
       "s3:ObjectRemoved:*"
     ]
+    queue_arn = "${aws_sqs_queue.s3_changed_queue.arn}"
   }
 }
