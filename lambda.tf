@@ -1,16 +1,29 @@
-data "archive_file" "lambda_zip" {
-  type = "zip"
-  source_file = "invalidate.py"
-  output_path = "invalidate.zip"
+resource "aws_s3_bucket" "deployment" {
+  bucket = "${var.site-without-dots}-deployments"
+  acl = "private"
+  tags {
+    "type" = "${var.tag}"
+  }
 }
-
-resource "aws_lambda_function" "func" {
-  filename = "${data.archive_file.lambda_zip.output_path}"
-  function_name = "invalidate_${var.site-without-dots}"
+resource "aws_s3_bucket_object" "zip" {
+  bucket = "${aws_s3_bucket.deployment.bucket}"
+  key = "lambda.zip"
+  source = "lambda/build/distributions/lambda.zip"
+  etag = "${md5(file("lambda/build/distributions/lambda.zip"))}"
+  tags {
+    "type" = "${var.tag}"
+  }
+}
+resource "aws_lambda_function" "invalidate" {
+  s3_bucket = "${aws_s3_bucket.deployment.bucket}"
+  s3_key = "${aws_s3_bucket_object.zip.key}"
+  function_name = "invalidate-${var.site-without-dots}-distribution"
   role = "${aws_iam_role.iam_for_lambda.arn}"
-  handler = "invalidate.handler"
-  source_code_hash = "${base64sha256(file(data.archive_file.lambda_zip.output_path))}"
-  runtime = "python2.7"
+  handler = "kesselring.io.InvalidateLambda::handleRequest"
+  source_code_hash = "${base64sha256(file("lambda/build/distributions/lambda.zip"))}"
+  runtime = "java8"
+  timeout = "20"
+  memory_size = "256"
   environment {
     variables {
       distribution = "${aws_cloudfront_distribution.cloudfront.id}"
@@ -21,4 +34,3 @@ resource "aws_lambda_function" "func" {
     "type" = "${var.tag}"
   }
 }
-

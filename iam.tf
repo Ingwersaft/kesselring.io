@@ -44,6 +44,17 @@ resource "aws_iam_policy" "lambdapolicy" {
         "Resource": [
             "*"
         ]
+    },
+  {
+      "Sid": "Stmt1535457627608",
+      "Action": [
+        "sqs:DeleteMessage",
+        "sqs:DeleteMessageBatch",
+        "sqs:GetQueueUrl",
+        "sqs:ReceiveMessage"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_sqs_queue.s3_changed_queue.arn}"
     }
  ]
 }
@@ -54,11 +65,4 @@ resource "aws_iam_policy_attachment" "iam_for_lambda_policy_attachment" {
   roles = [
     "${aws_iam_role.iam_for_lambda.name}"]
   policy_arn = "${aws_iam_policy.lambdapolicy.arn}"
-}
-resource "aws_lambda_permission" "allow_bucket" {
-  statement_id = "AllowExecutionFromS3Bucket"
-  action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.func.arn}"
-  principal = "s3.amazonaws.com"
-  source_arn = "${aws_s3_bucket.b.arn}"
 }
