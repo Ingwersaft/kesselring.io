@@ -4,12 +4,29 @@ resource "aws_route53_record" "mail_mx" {
   type = "MX"
 
   records = [
-    "15 yduf47ta74y3tslubgaslnijjaqojk6xombzudvjhyjcgkp2jmfq.mx-verification.google.com.",
-    "1 ASPMX.L.GOOGLE.COM",
-    "5 ALT1.ASPMX.L.GOOGLE.COM",
-    "5 ALT2.ASPMX.L.GOOGLE.COM",
-    "10 ALT3.ASPMX.L.GOOGLE.COM",
-    "10 ALT4.ASPMX.L.GOOGLE.COM",
+    "0 kesselring-io.mail.protection.outlook.com."
+  ]
+
+  ttl = "3600"
+}
+resource "aws_route53_record" "mail_cname" {
+  zone_id = "${aws_route53_zone.dnszone.zone_id}"
+  name = "autodiscover.${var.site}"
+  type = "CNAME"
+
+  records = [
+    "autodiscover.outlook.com."
+  ]
+
+  ttl = "3600"
+}
+resource "aws_route53_record" "mail_txt" {
+  zone_id = "${aws_route53_zone.dnszone.zone_id}"
+  name = ""
+  type = "TXT"
+
+  records = [
+    "v=spf1 include:spf.protection.outlook.com -all"
   ]
 
   ttl = "3600"
