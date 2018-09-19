@@ -7,3 +7,6 @@ output "cf-distribution" {
 output "sqs-arn" {
   value = "${aws_sqs_queue.s3_changed_queue.arn}"
 }
+output "cloudfront-status" {
+  value = "${aws_cloudfront_distribution.cloudfront.status}"
+}
