@@ -13,3 +13,34 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:$kotlin_frontend_version"
     }
 }
+apply plugin: 'kotlin2js'
+apply plugin: 'org.jetbrains.kotlin.frontend'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
+}
+
+compileKotlin2Js {
+    kotlinOptions {
+        moduleKind = 'commonjs'
+        kotlinOptions.metaInfo = true
+    }
+}
+
+kotlinFrontend {
+    npm {
+        dependency "common-js"
+        dependency "hard-source-webpack-plugin"
+        devDependency "karma-webpack"
+    }
+    webpackBundle {
+        bundleName = 'kesselringio'
+        contentPath = file('src/main/web')
+        webpackConfigFile = project.projectDir.path + '/webpack.config.js'
+    }
+    karma {
+        enableWebPack = true
+        preprocessors = ["webpack"]
+        plugins = ["karma-webpack", "karma-phantomjs-launcher", "karma-junit-reporter", "karma-qunit"]
+    }
+}
