@@ -29,6 +29,7 @@ compileKotlin2Js {
 
 kotlinFrontend {
     npm {
+        dependency "bulma"
         dependency "common-js"
         dependency "hard-source-webpack-plugin"
         devDependency "karma-webpack"

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <style>
         body {
@@ -70,67 +70,16 @@
             }
         }
 
-        #nav {
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            padding: 10px;
-
-            background-color: white;
-            display: flex;
-            flex-direction: column;
+        .navbar {
+            position: -webkit-sticky !important; /* Safari */
+            position: sticky !important;
+            margin-top: 20px;
         }
 
-        #nav > div {
-            text-align: center;
-            padding: 5px;
-        }
-
-        #nav > div > a {
-            color: black;
-            font-style: italic;
-            display: block;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        #nav > div > a:hover {
-            background-color: darkgrey;
-        }
-
-        @media (min-width: 768px) {
-            #nav {
-                visibility: unset;
-                flex-direction: unset;
-                float: left;
-
-                border: none;
-                top: -5px;
-                bottom: auto;
-                width: 100%;
-
-                padding: 0;
-
-                position: -webkit-sticky; /* Safari */
-                position: sticky;
-
-                background-image: linear-gradient(
-                        rgba(0, 0, 0, 0.05),
-                        rgba(0, 0, 0, 0.02)
-                );
-            }
-
-            #nav > div {
-                float: left;
-            }
-        }
     </style>
     <script src="kesselringio.bundle.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
 </head>
 <body>
 <!-- start-->
@@ -141,131 +90,79 @@
     <div id="left"></div>
     <div id="right"></div>
 </section>
-<nav id="nav">
-    <div><a href="#home">Home</a></div>
-    <div><a href="#skills">Skills</a></div>
-    <div><a href="#contact">Contact</a></div>
+<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <img src="logo_bad_inv.png" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="kesselNav">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="kesselNav" class="navbar-menu">
+        <div class="navbar-start">
+            <a href="#home" class="navbar-item">
+                Home
+            </a>
+
+            <a class="navbar-item">
+                Skills
+            </a>
+
+            <a class="navbar-item">
+                Blog
+            </a>
+
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        About
+                    </a>
+                    <a class="navbar-item">
+                        Contact
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Impressum
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
-<section id="content">
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Skills</h1>
+        <h2 class="subtitle">
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+        </h2>
     </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+</section>
+<section class="section">
+    <div class="container">
+        <h1 class="title">About</h1>
+        <h2 class="subtitle">
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+        </h2>
     </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-    </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-    </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-    </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-    </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-    </div>
-    <div>
-        <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
-        <p>Scroll down this frame to see the effect!</p>
-        <p>Scroll up to show the navbar.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor dummy text sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+</section>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Contact</h1>
+        <h2 class="subtitle">
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+        </h2>
     </div>
 </section>
 <!-- end-->
