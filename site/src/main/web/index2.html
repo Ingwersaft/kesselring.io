@@ -56,20 +56,51 @@
             color: white;
             font-size: 20px;
             top: 200px;
-            left: 20px;
+            left: 30px;
         }
 
         @media (min-width: 768px) {
             #headertext {
                 left: 200px;
-                font-size: 45px;
+                top: 300px;
+                font-size: 65px;
             }
+
+            #headertext > p {
+                font-size: 35px;
+            }
+        }
+
+        #downarrow {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: 0px;
+        }
+
+        #downarrow > a {
+            font-size: 65px;
+            color: darkgrey;
+        }
+
+        #downarrow > a:hover {
+            color: lightgrey;
         }
 
         .navbar {
             position: -webkit-sticky !important; /* Safari */
             position: sticky !important;
             margin-top: 20px;
+        }
+
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-footer {
+            margin-top: auto;
         }
 
     </style>
@@ -82,13 +113,29 @@
 <section id="home">
     <div id="headertext">
         <h1>Marcel Kesselring</h1>
+        <p>
+            <a href="https://github.com/Ingwersaft" target="_blank">
+                <i class="fab fa-github" style="color: white"></i>
+            </a>
+            <a href="https://www.xing.com/profile/Marcel_Kesselring2" target="_blank">
+                <i class="fab fa-xing" style="color: white"></i>
+            </a>
+            <a href="mailto:marcel@kesselring.io" target="_blank">
+                <i class="far fa-envelope" style="color: white"></i>
+            </a>
+        </p>
     </div>
     <div id="left"></div>
     <div id="right"></div>
+    <div id="downarrow">
+        <a href="#nav">
+            <i class="fas fa-angle-down"></i>
+        </a>
+    </div>
 </section>
-<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+<nav id="nav" class="navbar is-black" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item" href="#">
             <img src="logo_bad_inv.png" width="112" height="28">
         </a>
 
@@ -102,8 +149,11 @@
 
     <div id="kesselNav" class="navbar-menu">
         <div class="navbar-start">
-            <a href="#home" class="navbar-item">
-                Home
+            <a href="#" class="navbar-item">
+                <span class="icon is-small">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </span>
+                <span>Home</span>
             </a>
 
             <a class="navbar-item">
@@ -139,12 +189,104 @@
 </nav>
 <section class="section">
     <div class="container">
-        <h1 class="title">Skills</h1>
-        <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-        </h2>
+        <h1 class="title">How I can help</h1>
+        <div class="columns">
+            <div class="column">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title is-centered">
+                            Development
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#development" class="card-footer-item">Read more</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title is-centered">
+                            Component
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</span>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Read more</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title is-centered">
+                            Component
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</span>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Read more</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title is-centered">
+                            Component
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                            invidunt ut labore et dolore magna aliquyam erat, </span>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Read more</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+<!-- detail -->
+<section class="section">
+    <div id="development" class="container is-fluid">
+        <h2 class="subtitle">Development</h2>
+        <div class="notification">
+            This container is <strong>centered</strong> on desktop.
+        </div>
+    </div>
+    <br/>
+    <div id="component" class="container is-fluid">
+        <h2 class="subtitle">Component</h2>
+        <div class="notification">
+            This container is <strong>centered</strong> on desktop.
+        </div>
+    </div>
+    <br/>
+    <div id="component2" class="container is-fluid">
+        <h2 class="subtitle">Component</h2>
+        <div class="notification">
+            This container is <strong>centered</strong> on desktop.
+        </div>
+    </div>
+    <br/>
+    <div id="component3" class="container is-fluid">
+        <h2 class="subtitle">Component</h2>
+        <div class="notification">
+            This container is <strong>centered</strong> on desktop.
+        </div>
+    </div>
+</section>
+<!-- about -->
 <section class="section">
     <div class="container">
         <h1 class="title">About</h1>
@@ -153,6 +295,7 @@
         </h2>
     </div>
 </section>
+<!-- contact -->
 <section class="section">
     <div class="container">
         <h1 class="title">Contact</h1>
@@ -161,8 +304,14 @@
         </h2>
     </div>
 </section>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            Designed by <a href="https://kesselring.io">Marcel Kesselring</a>. The website source code is open source
+            under the <a href="todo">TODO TODO license</a>
+            and developed at <a href="todo">Ingwersaft/kesselring.io</a>
+        </p>
+    </div>
+</footer>
 <!-- end-->
-<script>
-
-</script>
 </body>
