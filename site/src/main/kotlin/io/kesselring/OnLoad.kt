@@ -30,7 +30,6 @@ private fun addedNavbarBurberClickFunctionality() {
     }
     document.getElementsByClassName("navbar-item").asList().forEach {
         it.addEventListener("click", callback = {
-            println("navbar item clicked")
             burgerNodes.map { it as Element }.forEach {
                 it.removeClass("is-active")
                 val target = it.getAttribute("data-target")?.let {

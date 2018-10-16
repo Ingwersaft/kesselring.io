@@ -93,6 +93,12 @@
             margin-top: 20px;
         }
 
+        @media (min-width: 768px) {
+            .navbar-end {
+                margin-right: 10px;
+            }
+        }
+
         .card {
             height: 100%;
             display: flex;
@@ -166,7 +172,7 @@
                         Development
                     </a>
                     <a class="navbar-item">
-                        Component
+                        Projects
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item">
@@ -228,7 +234,7 @@
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title is-centered">
-                            Component
+                            Projects
                         </p>
                     </header>
                     <div class="card-content">
@@ -275,31 +281,33 @@
 </section>
 <!-- detail -->
 <section class="section">
-    <div id="development" class="container is-fluid">
-        <h2 class="subtitle">Development</h2>
-        <div class="notification">
-            This container is <strong>centered</strong> on desktop.
+    <div class="container">
+        <div id="development" class="container is-fluid">
+            <h2 class="subtitle">Development</h2>
+            <div class="notification">
+                This container is <strong>centered</strong> on desktop.
+            </div>
         </div>
-    </div>
-    <br/>
-    <div id="component" class="container is-fluid">
-        <h2 class="subtitle">Component</h2>
-        <div class="notification">
-            This container is <strong>centered</strong> on desktop.
+        <br/>
+        <div id="component" class="container is-fluid">
+            <h2 class="subtitle">Component</h2>
+            <div class="notification">
+                This container is <strong>centered</strong> on desktop.
+            </div>
         </div>
-    </div>
-    <br/>
-    <div id="component2" class="container is-fluid">
-        <h2 class="subtitle">Component</h2>
-        <div class="notification">
-            This container is <strong>centered</strong> on desktop.
+        <br/>
+        <div id="component2" class="container is-fluid">
+            <h2 class="subtitle">Component</h2>
+            <div class="notification">
+                This container is <strong>centered</strong> on desktop.
+            </div>
         </div>
-    </div>
-    <br/>
-    <div id="component3" class="container is-fluid">
-        <h2 class="subtitle">Component</h2>
-        <div class="notification">
-            This container is <strong>centered</strong> on desktop.
+        <br/>
+        <div id="component3" class="container is-fluid">
+            <h2 class="subtitle">Component</h2>
+            <div class="notification">
+                This container is <strong>centered</strong> on desktop.
+            </div>
         </div>
     </div>
 </section>
@@ -307,9 +315,36 @@
 <section class="section">
     <div class="container">
         <h1 class="title">About</h1>
-        <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-        </h2>
+        <div class="notification">
+            <pre>
+            <code>
+about {
+    name = "Marcel Kesselring"
+    birthday {
+        year = 1990
+        month = 1
+        day = 12
+    }
+    email = "marcel@kesselring.io"
+
+    github = "https://github.com/Ingwersaft"
+    xing = "https://www.xing.com/profile/Marcel_Kesselring2"
+
+    enthusiasm = listOf(
+        "Kotlin",
+        "Kotlin Coroutines",
+        "DevOps",
+        "Java",
+        "Infrastructure as code (IaC)",
+        "Serverside Microframeworks",
+        "Linux",
+        "Gradle",
+        "Terraform",
+        "Container Platforms"
+    )
+}</code>
+            </pre>
+        </div>
     </div>
 </section>
 <!-- contact -->
