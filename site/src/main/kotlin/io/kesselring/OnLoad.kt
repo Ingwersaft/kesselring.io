@@ -17,7 +17,8 @@ fun main(args: Array<String>) {
 }
 
 private fun addedNavbarBurberClickFunctionality() {
-    document.querySelectorAll(".navbar-burger").asList().forEach { node: Node ->
+    val burgerNodes = document.querySelectorAll(".navbar-burger").asList()
+    burgerNodes.forEach { node: Node ->
         node.addEventListener("click", callback = {
             node as Element
             val target = node.getAttribute("data-target")?.let {
@@ -27,12 +28,18 @@ private fun addedNavbarBurberClickFunctionality() {
             target?.classList?.toggle("is-active")
         })
     }
-//    document.getElementsByClassName("navbar-burger").asList().firstOrNull()?.let { element ->
-//        println("addint onclick event listener")
-//        element.addEventListener("click", callback = {
-//            println("navbar-burger clicked!")
-//        })
-//    }
+    document.getElementsByClassName("navbar-item").asList().forEach {
+        it.addEventListener("click", callback = {
+            println("navbar item clicked")
+            burgerNodes.map { it as Element }.forEach {
+                it.removeClass("is-active")
+                val target = it.getAttribute("data-target")?.let {
+                    document.getElementById(it)
+                }
+                target?.removeClass("is-active")
+            }
+        })
+    }
 }
 
 private fun handleNavbarStickinessDesktop() {
