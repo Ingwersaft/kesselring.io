@@ -2,25 +2,26 @@ variable "web" {
   description = "all files to be copied"
   type = "list"
   default = [
-    "deutschland_heidelberg_header.jpg",
-    "error.html",
-    "index.html",
-    "index2.html",
-    "logo_bad.png",
-    "logo_bad_inv.png"]
+    "deutschland_heidelberg_header.jpg#image/jpeg",
+    "error.html#text/html",
+    "index.html#text/html",
+    "index2.html#text/html",
+    "logo_bad.png#image/png",
+    "logo_bad_inv.png#image/png"]
 }
 resource "aws_s3_bucket_object" "webcontent" {
   count = "${length(var.web)}"
   bucket = "${aws_s3_bucket.b.bucket}"
-  key = "${element(var.web, count.index)}"
-  source = "site/src/main/web/${element(var.web, count.index)}"
-  //content_type = "text/html"
-  etag = "${md5(file(format("%s%s","site/src/main/web/",element(var.web, 0))))}"
+  key = "${element(split("#",element(var.web, count.index)),0)}"
+  source = "site/src/main/web/${element(split("#",element(var.web, count.index)),0)}"
+  content_type = "${element(split("#",element(var.web, count.index)),1)}"
+  etag = "${md5(file(format("%s%s","site/src/main/web/",element(split("#",element(var.web, count.index)),0))))}"
 }
 //// the bundle is missing
 resource "aws_s3_bucket_object" "bundle" {
   bucket = "${aws_s3_bucket.b.bucket}"
   key = "kesselringio.bundle.js"
   source = "site/build/bundle/kesselringio.bundle.js"
+  content_type = "application/javascript"
   etag = "${md5(file("site/build/bundle/kesselringio.bundle.js"))}"
 }
