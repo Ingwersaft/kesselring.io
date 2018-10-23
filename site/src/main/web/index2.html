@@ -20,11 +20,11 @@
             background-size: cover;
             background-position: center;
 
-            margin: 8px;
+            margin: 8px 0px;
         }
 
         #left {
-            width: 30%;
+            width: 33%;
             height: 20%;
 
             position: absolute;
@@ -109,6 +109,38 @@
             margin-top: auto;
         }
 
+        .section {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        /*about section*/
+        #aboutSection, #aboutNotification, #aboutNotification > pre {
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #aboutNotification > pre > code {
+            font-size: 9px;
+            font-style: oblique;
+        }
+
+        @media (min-width: 768px) {
+            #aboutSection, #aboutNotification, #aboutNotification > pre {
+                padding-left: 24px;
+                padding-right: 24px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            #aboutNotification > pre > code {
+                font-size: 1em;
+                font-style: oblique;
+            }
+
+        }
     </style>
     <script src="kesselringio.bundle.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -312,10 +344,10 @@
     </div>
 </section>
 <!-- about -->
-<section class="section">
+<section id="aboutSection" class="section">
     <div class="container">
         <h1 class="title">About</h1>
-        <div class="notification">
+        <div id="aboutNotification" class="notification">
             <pre>
             <code>
 about {
