@@ -11,6 +11,9 @@
 
         #home {
             height: 100vh;
+            /* If you need to support browser without CSS var support (<= IE11) */
+            height: calc(100vh - var(--vh-offset, 0px));
+
             background-image: linear-gradient(
                     rgba(0, 0, 0, 0.5),
                     rgba(0, 0, 0, 0.5)
@@ -398,5 +401,12 @@ about {
         </p>
     </div>
 </footer>
+<script src="https://unpkg.com/vh-check/dist/vh-check.min.js"></script>
+<script>
+    (function () {
+        // initialize the test
+        var test = vhCheck('vh-offset');
+    }());
+</script>
 <!-- end-->
 </body>
