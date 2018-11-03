@@ -6,67 +6,12 @@ import kotlin.browser.window
 import kotlin.dom.addClass
 import kotlin.dom.removeClass
 
-private val closables by lazy { document.querySelectorAll(".closable").asList() }
-private val showables by lazy { document.querySelectorAll(".showables").asList() }
 fun main(args: Array<String>) {
     window.onload = {
         println("hello there")
 
         handleNavbarStickinessDesktop()
         addedNavbarBurberClickFunctionality()
-
-        showables.map { it as Element }.forEach {
-            it.addEventListener("click", callback = {
-                println("showables clicked")
-                showClosables()
-                hide("impressum")
-                hide("datenschutzerklaerung")
-            })
-        }
-
-        addImpressumShowHideBehaviour()
-        addDatenschutzShowHideBehaviour()
-    }
-}
-
-private fun addImpressumShowHideBehaviour() {
-    document.getElementById("impressumLink")?.addEventListener("click", callback = {
-        println("impressumLink clicked")
-        closables.forEach {
-            it as Element
-            it.setAttribute("style", "display: none;")
-        }
-        show("impressum")
-        hide("datenschutzerklaerung")
-    })
-}
-
-private fun addDatenschutzShowHideBehaviour() {
-    document.getElementById("datenschutzerklaerungLink")?.addEventListener("click", callback = {
-        println("datenschutzerklaerungLink clicked")
-        closables.forEach {
-            it as Element
-            it.setAttribute("style", "display: none;")
-        }
-        hide("impressum")
-        show("datenschutzerklaerung")
-    })
-}
-
-private fun showClosables() = closables.forEach {
-    it as Element
-    it.removeAttribute("style")
-}
-
-private fun show(id: String) {
-    document.getElementById(id)?.let {
-        it.removeAttribute("style")
-    }
-}
-
-private fun hide(id: String) {
-    document.getElementById(id)?.let {
-        it.setAttribute("style", "display: none;")
     }
 }
 

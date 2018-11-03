@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+}
+
+#home {
+    height: 100vh;
+    /* If you need to support browser without CSS var support (<= IE11) */
+    height: calc(100vh - var(--vh-offset, 0px));
+
+    background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+    ), url("deutschland_heidelberg_header.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+
+    margin: 8px 0px;
+    margin-bottom: 0px;
+}
+
+#left {
+    width: 33%;
+    height: 20%;
+
+    position: absolute;
+    bottom: -10px;
+
+    background-color: white;
+    -webkit-clip-path: polygon(0 0%, 100% 50%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0%, 100% 50%, 100% 100%, 0% 100%);
+
+}
+
+#right {
+    width: 70%;
+    height: 20%;
+
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+
+    background-color: white;
+    -webkit-clip-path: polygon(0% 50%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%, 0% 100%);
+
+}
+
+#headertext {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    top: 200px;
+    left: 30px;
+}
+
+@media (min-width: 768px) {
+    #headertext {
+        left: 200px;
+        top: 300px;
+        font-size: 65px;
+    }
+
+    #headertext > p {
+        font-size: 35px;
+    }
+}
+
+@media (max-height: 600px) {
+    #headertext {
+        left: 20px;
+        top: 50px;
+    }
+}
+
+#downarrow {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0px;
+}
+
+#downarrow > a {
+    font-size: 65px;
+    color: darkgrey;
+}
+
+#downarrow > a:hover {
+    color: lightgrey;
+}
+
+.navbar {
+    position: -webkit-sticky !important; /* Safari */
+    position: sticky !important;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .navbar-end {
+        margin-right: 80px;
+    }
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-footer {
+    margin-top: auto;
+}
+
+.section {
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+/*about section*/
+#aboutSection, #aboutNotification, #aboutNotification > pre {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#aboutNotification > pre > code {
+    font-size: 9px;
+    font-style: oblique;
+}
+
+@media (min-width: 768px) {
+    #aboutSection, #aboutNotification, #aboutNotification > pre {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #aboutNotification > pre > code {
+        font-size: 1em;
+        font-style: oblique;
+    }
+}
+
+#upButton {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
