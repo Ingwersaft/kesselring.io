@@ -16,7 +16,14 @@ import java.util.*
 val cloudFront = AmazonCloudFrontClientBuilder.defaultClient()
 val sqs = AmazonSQSClientBuilder.defaultClient()
 
+/**
+ * s3 changes will trigger sqs-events which in tern will trigger this lambda.
+ * see the terraform infrastructure for setup details
+ */
 class InvalidateLambda : RequestHandler<String, String> {
+    /**
+     *  trigger invalidation if applicable
+     */
     override fun handleRequest(input: String?, context: Context?): String {
         try {
             println("handleRequest: $input")
@@ -70,5 +77,5 @@ fun logAndReturn(s: String): String {
 }
 
 fun main(args: Array<String>) {
-    println(60*24*30)
+    println(60 * 24 * 30)
 }

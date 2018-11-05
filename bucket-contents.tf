@@ -9,7 +9,9 @@ variable "web" {
     "impressum.html#text/html",
     "datenschutz.html#text/html",
     "logo_bad.png#image/png",
-    "logo_bad_inv.png#image/png"]
+    "logo_bad_inv.png#image/png",
+    "kesselring.css#text/css",
+    "pic2.jpg#image/jpeg"]
 }
 resource "aws_s3_bucket_object" "webcontent" {
   count = "${length(var.web)}"
