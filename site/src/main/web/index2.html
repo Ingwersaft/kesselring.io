@@ -54,7 +54,7 @@
     <div id="kesselNav" class="navbar-menu">
         <div class="navbar-start">
             <a href="#" class="navbar-item">
-                <span class="icon is-small">
+                <span id="homeIcon" class="icon is-small">
                     <i class="fas fa-home" aria-hidden="true"></i>
                 </span>
                 <span>Home</span>
@@ -146,7 +146,7 @@
                                     highest demands of its customers.</span>
                             </div>
                             <footer class="card-footer">
-                                <a href="#development" class="card-footer-item">Read more</a>
+                                <a href="#development" class="card-footer-item link">Read more</a>
                             </footer>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                                     existing one to raise the bars even higher.</span>
                             </div>
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item">Read more</a>
+                                <a href="#" class="card-footer-item link">Read more</a>
                             </footer>
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                                     expertise while producing the highest quality code.</span>
                             </div>
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item">Read more</a>
+                                <a href="#" class="card-footer-item link">Read more</a>
                             </footer>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                                     your employees programming skills to the next level.</span>
                             </div>
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item">Read more</a>
+                                <a href="#" class="card-footer-item link">Read more</a>
                             </footer>
                         </div>
                     </div>
@@ -227,49 +227,43 @@
         <div id="projects" class="container is-fluid">
             <br>
             <h2 class="subtitle">Project Architect</h2>
-            <div class="notification">
-                <div class="notification content">
-                    <ul>
-                        <li>Design, Development and Deployment of your individual project</li>
-                        <li>Profit from over six years of industrial experience</li>
-                        <li>Holistic implementation of your project</li>
-                    </ul>
-                </div>
+            <div class="notification content">
+                <ul>
+                    <li>Design, Development and Deployment of your individual project</li>
+                    <li>Profit from over six years of industrial experience</li>
+                    <li>Holistic implementation of your project</li>
+                </ul>
             </div>
         </div>
         <br/>
         <div id="teamaugmentation" class="container is-fluid">
             <br>
             <h2 class="subtitle">Team Augmentation</h2>
-            <div class="notification">
-                <div class="notification content">
-                    <ul>
-                        <li>Leverage my expertise right away</li>
-                        <li>Peer programming transfers knowledge for long term gains</li>
-                        <li>Development of CI/CD pipelines</li>
-                        <li>Code reviews</li>
-                        <li>Architectural Guidance</li>
-                        <li>Close collaboration will fasttrack your teams success</li>
-                    </ul>
-                </div>
+            <div class="notification content">
+                <ul>
+                    <li>Leverage my expertise right away</li>
+                    <li>Peer programming transfers knowledge for long term gains</li>
+                    <li>Development of CI/CD pipelines</li>
+                    <li>Code reviews</li>
+                    <li>Architectural Guidance</li>
+                    <li>Close collaboration will fasttrack your teams success</li>
+                </ul>
             </div>
         </div>
         <br/>
         <div id="training" class="container is-fluid">
             <br>
             <h2 class="subtitle">Training</h2>
-            <div class="notification">
-                <div class="notification content">
-                    <ul>
-                        <li><strong>Kotlin</strong> - It's already easy for Java developers to switch to Kotlin, but
-                            with my help, you can
-                            reduce the learning curve even more and focus on Kotlin's benefits right away.
-                        </li>
-                        <li>Advanced Kotlin - Your team already works with Kotlin? Kickstart its productivity with
-                            Coroutines and Multiplatform Projects
-                        </li>
-                    </ul>
-                </div>
+            <div class="notification content">
+                <ul>
+                    <li><strong>Kotlin</strong> - It's already easy for Java developers to switch to Kotlin, but
+                        with my help, you can
+                        reduce the learning curve even more and focus on Kotlin's benefits right away.
+                    </li>
+                    <li>Advanced Kotlin - Your team already works with Kotlin? Kickstart its productivity with
+                        Coroutines and Multiplatform Projects
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -292,6 +286,7 @@ about {
 
     github = "https://github.com/Ingwersaft"
     xing = "https://www.xing.com/profile/Marcel_Kesselring2"
+    linkedin = "https://www.linkedin.com/in/marcel-kesselring-6a05b1173/"
 
     enthusiasm = listOf(
         "Kotlin",
@@ -313,7 +308,7 @@ about {
 <!-- skills -->
 <!-- green: is-success yellow: is-warning red: is-danger-->
 <section id="skillSection" class="section">
-    <div class="container">
+    <div id="skillContainer" class="container card">
         <h1 class="title">Core Skills</h1>
         <div class="columns">
             <div class="column">
@@ -423,7 +418,7 @@ about {
             </tr>
             <tr>
                 <td class="is-italic has-text-weight-semibold">E-Mail</td>
-                <td class="has-text-right"><a href="mailto:info@kesselring.io">info@kesselring.io</a></td>
+                <td class="has-text-right"><a class="link" href="mailto:info@kesselring.io">info@kesselring.io</a></td>
             </tr>
             </tbody>
         </table>
@@ -433,10 +428,10 @@ about {
 <footer class="footer">
     <div class="content has-text-centered">
         <div>
-            <a href="impressum.html#left">Impressum</a>
+            <a class="link" href="impressum.html#left">Impressum</a>
         </div>
         <div>
-            <a href="datenschutz.html#left">Datenschutzerklärung</a>
+            <a class="link" href="datenschutz.html#left">Datenschutzerklärung</a>
         </div>
         <div>
             <p>© 2018 Marcel Kesselring</p>
@@ -444,9 +439,10 @@ about {
         <br>
         <div>
             <p>
-                Designed by <a href="https://kesselring.io">Marcel Kesselring</a>. The website source code is
+                Designed by <a class="link" href="https://kesselring.io">Marcel Kesselring</a>. The website source code
+                is
                 publicly developed at
-                <a href="https://github.com/Ingwersaft/kesselring.io/">Ingwersaft/kesselring.io</a>
+                <a class="link" href="https://github.com/Ingwersaft/kesselring.io/">Ingwersaft/kesselring.io</a>
             </p>
         </div>
     </div>

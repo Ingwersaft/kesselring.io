@@ -47,6 +47,10 @@ body {
 
 }
 
+#homeIcon {
+    padding-right: 10px;
+}
+
 #headertext {
     position: absolute;
     background-color: transparent;
@@ -91,6 +95,15 @@ body {
     color: lightgrey;
 }
 
+.link {
+    color: dimgrey;
+    text-shadow: 1px 1px lightgray;
+}
+
+.link:hover {
+    color: lightgrey;
+}
+
 .navbar {
     position: -webkit-sticky !important; /* Safari */
     position: sticky !important;
@@ -99,7 +112,7 @@ body {
 
 @media (min-width: 768px) {
     .navbar-end {
-        margin-right: 80px;
+        margin-right: 10px;
     }
 }
 
@@ -166,4 +179,16 @@ body {
 
 .card:hover {
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.card-header, .notification {
+    background-color: rgb(255, 233, 204);
+}
+
+#skillContainer {
+    padding: 10px;
+}
+
+.content ul {
+    margin-top: 0;
 }
