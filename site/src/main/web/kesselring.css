@@ -192,3 +192,32 @@ body {
 .content ul {
     margin-top: 0;
 }
+
+.logos {
+    list-style-type: none;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.logos > li {
+    display: inline;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+@media (min-width: 768px) {
+    .logos > li {
+        display: inline;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.logos > li:first-of-type {
+    padding-left: 0px;
+}
+
+.logos > li > a {
+
+}
