@@ -5,7 +5,6 @@ variable "web" {
     "deutschland_heidelberg_header.jpg#image/jpeg",
     "error.html#text/html",
     "index.html#text/html",
-    "index2.html#text/html",
     "impressum.html#text/html",
     "datenschutz.html#text/html",
     "logo_bad.png#image/png",
