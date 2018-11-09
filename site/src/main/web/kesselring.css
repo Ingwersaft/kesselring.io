@@ -218,6 +218,6 @@ body {
     padding-left: 0px;
 }
 
-.logos > li > a {
-
+h1, h2.subtitle {
+    font-family: 'Montserrat';
 }
