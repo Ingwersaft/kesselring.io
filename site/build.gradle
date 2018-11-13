@@ -36,7 +36,7 @@ kotlinFrontend {
     }
     webpackBundle {
         bundleName = 'kesselringio'
-        contentPath = file('src/main/web')
+        contentPath = file('build/web')
         webpackConfigFile = project.projectDir.path + '/webpack.config.js'
     }
     karma {
@@ -44,4 +44,16 @@ kotlinFrontend {
         preprocessors = ["webpack"]
         plugins = ["karma-webpack", "karma-phantomjs-launcher", "karma-junit-reporter", "karma-qunit"]
     }
+}
+tasks {
+    task copyFiles(type: Copy) {
+        outputs.upToDateWhen { false }
+
+        from('src/main/web')
+        from project(':blog').file('build/web')
+        into('build/web')
+    }
+}
+gradle.projectsEvaluated {
+    build.dependsOn(copyFiles)
 }

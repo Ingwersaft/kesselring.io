@@ -1,6 +1,9 @@
 package io.kesselring.blog
 
 import kotlinx.html.*
+import java.time.Month
+import java.time.format.TextStyle
+import java.util.*
 import kotlin.reflect.KProperty
 
 @DslMarker
@@ -10,11 +13,11 @@ fun blog(initializer: Blog.() -> Unit): Blog = Blog(initializer)
 
 @BlogDsl
 class Blog(initializer: Blog.() -> Unit) {
-    private val years: MutableMap<Int, Year> = mutableMapOf()
+    val years: MutableMap<Int, Year> = mutableMapOf()
     var defaultAuthor: String? = null
 
-    fun year(number: Int, block: Year.() -> Unit) {
-        years[number] = Year(number, defaultAuthor).apply(block)
+    fun year(yearNumber: Int, block: Year.() -> Unit) {
+        years[yearNumber] = Year(yearNumber, defaultAuthor).apply(block)
     }
 
     operator fun getValue(nothing: Nothing?, property: KProperty<*>): Blog {
@@ -25,7 +28,7 @@ class Blog(initializer: Blog.() -> Unit) {
         initializer()
     }
 
-    val asSection: BODY.() -> Unit = {
+    val mainPage: BODY.() -> Unit = {
         //<!-- blog -->
         //<section id="blogSection" class="section">
         //    <div class="container">
@@ -60,44 +63,28 @@ class Blog(initializer: Blog.() -> Unit) {
 }
 
 @BlogDsl
-enum class M {
-    January,
-    February,
-    March,
-    April,
-    May,
-    June,
-    July,
-    August,
-    September,
-    October,
-    November,
-    December,
-}
+class Year(val yearNumber: Int, val defaultAuthor: String?) {
+    val months: MutableMap<Month, MonthObj> = mutableMapOf()
 
-@BlogDsl
-class Year(val number: Int, val defaultAuthor: String?) {
-    val months: MutableMap<M, Month> = mutableMapOf()
-
-    fun month(m: M, block: Month.() -> Unit) {
-        months[m] = Month(defaultAuthor).apply(block)
+    fun month(m: Month, block: MonthObj.() -> Unit) {
+        months[m] = MonthObj(yearNumber, m, defaultAuthor).apply(block)
     }
 
     val asContentDiv: DIV.() -> Unit = {
         months.forEach { (m, month) ->
-            month.asContentDiv(this, m, number)
+            month.asContentDiv(this, m, yearNumber)
         }
     }
 }
 
 @BlogDsl
-class Month(val defaultAuthor: String?) {
-    private val entries: MutableList<Entry> = mutableListOf()
+class MonthObj(val yearNumber: Int, val m: Month, val defaultAuthor: String?) {
+    val entries: MutableList<Entry> = mutableListOf()
     fun entry(dayOfMonth: Int, block: Entry.() -> Unit) {
-        entries.add(Entry(defaultAuthor, dayOfMonth).apply(block))
+        entries.add(Entry(yearNumber, m, defaultAuthor, dayOfMonth).apply(block))
     }
 
-    val asContentDiv: DIV.(m: M, y: Int) -> Unit = { m, y ->
+    val asContentDiv: DIV.(m: Month, y: Int) -> Unit = { m, y ->
         entries.forEach {
             h1 {
                 +it.title
@@ -111,12 +98,12 @@ class Month(val defaultAuthor: String?) {
 }
 
 @BlogDsl
-class Entry(defaultAuthor: String?, val dayOfMonth: Int) {
+class Entry(val yearNumber: Int, val m: Month, defaultAuthor: String?, val dayOfMonth: Int) {
     lateinit var title: String
     lateinit var subtitle: String
     var author: String? = defaultAuthor
 
-    private val content: MutableList<Content> = mutableListOf()
+    val content: MutableList<Content> = mutableListOf()
 
     fun header(text: String) {
         content.add(Content.Header(text))
@@ -137,6 +124,8 @@ class Entry(defaultAuthor: String?, val dayOfMonth: Int) {
     fun image(link: String) {
         content.add(Content.Image(link))
     }
+
+    fun toLinkString(): String = "$yearNumber-${m.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)}"
 }
 
 sealed class Content {

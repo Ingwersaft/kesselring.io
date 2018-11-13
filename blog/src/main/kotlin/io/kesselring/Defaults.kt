@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+package io.kesselring
+
+val header = """<!DOCTYPE html>
 <html lang="en" class="">
 <head>
     <meta charset="UTF-8">
@@ -31,19 +33,6 @@
     <div id="left"></div>
     <div id="right"></div>
 </section>
-<!-- blog -->
-<section id="blogSection" class="section">
-    <div class="container">
-        <div class="columns">
-            <div id="blogContent" class="column is-four-fifths">
-                <h1>stuff</h1>
-            </div>
-            <div id="blogSidebar" class="column">
-                <h1>stuff</h1>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- floating home button -->
 <div id="upButton">
     <a href="index.html#nav" class="button">
@@ -52,7 +41,9 @@
     </span>
     </a>
 </div>
-<footer class="footer">
+"""
+
+val footer = """<footer class="footer">
     <div class="content has-text-centered">
         <div>
             <a class="link" href="impressum.html#left">Impressum</a>
@@ -68,8 +59,9 @@
             <p>
                 Designed by <a class="link" href="https://kesselring.io">Marcel Kesselring</a>. The website source code
                 is
-                publicly developed at
-                <a class="link" href="https://github.com/Ingwersaft/kesselring.io/">Ingwersaft/kesselring.io</a>
+                publicly
+                developed at
+                <a class="link" href="todo">Ingwersaft/kesselring.io</a>
             </p>
         </div>
     </div>
@@ -83,3 +75,4 @@
 </script>
 <!-- end-->
 </body>
+"""

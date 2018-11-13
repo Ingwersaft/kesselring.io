@@ -1,37 +1,55 @@
 package io.kesselring
 
-import io.kesselring.blog.M
+import io.kesselring.blog.Entry
 import io.kesselring.blog.blog
-import kotlinx.html.blockQuote
 import kotlinx.html.body
-import kotlinx.html.head
 import kotlinx.html.html
 import kotlinx.html.stream.appendHTML
+import java.time.Month
 
 val blogContent by blog {
     defaultAuthor = "Marcel Kesselring"
 
     year(2017) {
-
+        Month.values().forEach { m ->
+            month(m) {
+                repeat(3) {
+                    entry(it + 1) {
+                        title = "Something using someone (#${it + 1})"
+                        subtitle = "Some random stuff you might find interesting"
+                        sukejuraContent()
+                    }
+                }
+            }
+        }
     }
     year(2018) {
-        month(M.November) {
+        month(Month.NOVEMBER) {
             entry(dayOfMonth = 1) {
                 title = "Scheduling using Sukejura"
                 subtitle = "Getting started scheduling code-blocks on the JVM with Sukejura"
+                sukejuraContent()
+            }
+        }
+    }
+}
 
-                header("Setup with Gradle")
-                textBlock("First we have to add jcenter to our build file if not present yet:")
-                codeBlock(
-                    """repositories {
+fun main(args: Array<String>) {
+}
+
+private fun Entry.sukejuraContent() {
+    header("Setup with Gradle")
+    textBlock("First we have to add jcenter to our build file if not present yet:")
+    codeBlock(
+        """repositories {
         jcenter()
     }"""
-                )
-                textBlock("Next add Sukejura dependency to our build file:")
-                codeBlock("compile(\"io.kesselring.sukejura:Sukejura:<version>\")")
-                textBlock("And finally, add you sukejura code, for example:")
-                codeBlock(
-                    """    val sukejura = sukejura {
+    )
+    textBlock("Next add Sukejura dependency to our build file:")
+    codeBlock("compile(\"io.kesselring.sukejura:Sukejura:<version>\")")
+    textBlock("And finally, add you sukejura code, for example:")
+    codeBlock(
+        """    val sukejura = sukejura {
         schedule {
             // every working day of the week
             daysOfWeek {
@@ -61,19 +79,5 @@ val blogContent by blog {
     sukejura.schedules.first().invocations().take(20).forEach {
         println("triggering at: ${"$"}it")
     }"""
-                )
-            }
-        }
-    }
-}
-
-fun main(args: Array<String>) {
-    System.out.appendHTML(prettyPrint = true, xhtmlCompatible = true).html {
-        head {
-
-        }
-        body {
-            blogContent.asSection(this)
-        }
-    }
+    )
 }

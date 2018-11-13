@@ -12,9 +12,9 @@ module.exports = {
     resolve: {
         modules: [
             path.resolve('classes/kotlin/main'),
-            path.resolve('../../common-js/build/classes/kotlin/main'),
             path.resolve('resources/main'),
             path.resolve('node_modules'),
+            path.resolve('web')
         ]
     },
     plugins: [
