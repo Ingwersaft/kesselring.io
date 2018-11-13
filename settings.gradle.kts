@@ -1,4 +1,4 @@
-include("lambda", "site")
+include("lambda", "blog", "site")
 
 pluginManagement {
     val kotlinVersion: String by settings
