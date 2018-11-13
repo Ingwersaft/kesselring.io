@@ -171,6 +171,7 @@ body {
     position: fixed;
     right: 10px;
     bottom: 10px;
+    z-index: 1;
 }
 
 .card {
@@ -222,6 +223,27 @@ h1, h2.subtitle {
     font-family: 'Montserrat';
 }
 
+/*blog specific rules*/
 .bloglink {
     font-family: monospace;
+}
+
+.box > h1 {
+    margin-bottom: 4px !important;
+}
+
+.box > h2 {
+    margin-top: 1.5em;
+}
+
+.progress.is-danger::-webkit-progress-value {
+    background-color: rgb(255, 233, 204);
+}
+
+.progress.is-danger::-moz-progress-bar {
+    background-color: rgb(255, 233, 204);
+}
+
+.progress.is-danger::-ms-fill {
+    background-color: rgb(255, 233, 204);
 }

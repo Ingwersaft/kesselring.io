@@ -6,7 +6,9 @@ import kotlinx.html.body
 import kotlinx.html.html
 import kotlinx.html.stream.appendHTML
 import java.time.Month
+import java.util.concurrent.atomic.AtomicInteger
 
+val randomId = AtomicInteger()
 val blogContent by blog {
     defaultAuthor = "Marcel Kesselring"
 
@@ -15,8 +17,8 @@ val blogContent by blog {
             month(m) {
                 repeat(3) {
                     entry(it + 1) {
-                        title = "Something using someone (#${it + 1})"
-                        subtitle = "Some random stuff you might find interesting"
+                        title = "Something using someone (#${randomId.incrementAndGet()})"
+                        subtitle = "Some random stuff you might find interesting: $it"
                         sukejuraContent()
                     }
                 }
@@ -34,16 +36,13 @@ val blogContent by blog {
     }
 }
 
-fun main(args: Array<String>) {
-}
-
 private fun Entry.sukejuraContent() {
     header("Setup with Gradle")
     textBlock("First we have to add jcenter to our build file if not present yet:")
     codeBlock(
         """repositories {
         jcenter()
-    }"""
+}"""
     )
     textBlock("Next add Sukejura dependency to our build file:")
     codeBlock("compile(\"io.kesselring.sukejura:Sukejura:<version>\")")

@@ -126,6 +126,20 @@ class Entry(val yearNumber: Int, val m: Month, defaultAuthor: String?, val dayOf
     }
 
     fun toLinkString(): String = "$yearNumber-${m.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)}"
+
+    fun titleFileName() = "blog-" + (title.toLowerCase()
+        .replace(' ', '-')
+        .replace("#", "")
+        .replaceAll(listOf('*', '.', '"', '/', '\\', '[', ']', ':', ';', '|', '=', ',', '(', ')'), "") + ".html")
+}
+
+private tailrec fun String.replaceAll(toBeReplaced: List<Char>, replacement: String): String = when {
+    toBeReplaced.isEmpty() -> this
+    toBeReplaced.size > 1 -> replace(toBeReplaced.first().toString(), replacement).replaceAll(
+        toBeReplaced.subList(1, toBeReplaced.size),
+        replacement
+    )
+    else -> replace(toBeReplaced.first().toString(), replacement)
 }
 
 sealed class Content {
