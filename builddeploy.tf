@@ -85,6 +85,10 @@ resource "aws_codebuild_project" "build" {
       "name" = "SLACK_WEBHOOK"
       "value" = "${var.slack-webhook}"
     }
+    environment_variable {
+      "name" = "GITHUB_REPO_NAME"
+      "value" = "${var.github-repo}"
+    }
   }
 
   source {
