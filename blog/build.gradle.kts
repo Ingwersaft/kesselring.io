@@ -11,13 +11,16 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.11")
 }
 tasks {
-    val preparation by creating {
-        outputs.upToDateWhen { false }
-        mkdir("$buildDir/web")
+    //    val preparation by creating {
+//        outputs.upToDateWhen { false }
+//        mkdir("$buildDir/web")
+//    }
+    findByName("run")?.let {
+        it.doFirst {
+            mkdir("$buildDir/web")
+        }
+        it.outputs?.upToDateWhen { false }
     }
-    findByName("run")?.outputs?.upToDateWhen { false }
 }
-gradle.projectsEvaluated {
-    tasks.findByName("run")?.dependsOn("preparation")
-    tasks.findByName("build")?.dependsOn("run")
-}
+//tasks.findByName("run")?.dependsOn("preparation")
+tasks.findByName("build")?.dependsOn("run")
