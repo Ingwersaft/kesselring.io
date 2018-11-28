@@ -54,6 +54,8 @@ resource "aws_acm_certificate" "cert" {
   provider = "aws.useast"
   domain_name = "${var.site}"
   validation_method = "DNS"
+  subject_alternative_names = [
+    "www.${var.site}"]
   tags {
     "type" = "${var.tag}"
   }
@@ -67,11 +69,20 @@ resource "aws_route53_record" "cert_validation" {
     "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_value}"]
   ttl = 60
 }
+resource "aws_route53_record" "wwwcert_validation" {
+  name = "${aws_acm_certificate.cert.domain_validation_options.1.resource_record_name}"
+  type = "${aws_acm_certificate.cert.domain_validation_options.1.resource_record_type}"
+  zone_id = "${aws_route53_zone.dnszone.id}"
+  records = [
+    "${aws_acm_certificate.cert.domain_validation_options.1.resource_record_value}"]
+  ttl = 60
+}
 resource "aws_acm_certificate_validation" "cert" {
   provider = "aws.useast"
   certificate_arn = "${aws_acm_certificate.cert.arn}"
   validation_record_fqdns = [
-    "${aws_route53_record.cert_validation.fqdn}"]
+    "${aws_route53_record.cert_validation.fqdn}",
+    "${aws_route53_record.wwwcert_validation.fqdn}"]
 }
 resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
