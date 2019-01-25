@@ -54,7 +54,7 @@ val footer = """<footer class="footer">
             <a class="link" href="datenschutz.html#left">Datenschutzerklärung</a>
         </div>
         <div>
-            <p>© 2018 Marcel Kesselring</p>
+            <p>© 2018-2019 Marcel Kesselring</p>
         </div>
         <br>
         <div>
