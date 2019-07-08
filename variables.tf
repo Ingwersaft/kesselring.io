@@ -17,5 +17,5 @@ variable "github-repo" {
   default = "kesselring.io"
 }
 variable "slack-webhook" {
-  default = "https://hooks.slack.com/services/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"
+  
 }
