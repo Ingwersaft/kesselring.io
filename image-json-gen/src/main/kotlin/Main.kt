@@ -19,4 +19,5 @@ fun main(args: Array<String>) {
         }
 
     s3.putObject(bucketName, "${prefix}keys.json", jackson.writeValueAsString(keys))
+    println("written keys.json with ${keys.size} entries")
 }
