@@ -1,4 +1,4 @@
-include("lambda", "site")
+include("lambda", "site", "image-json-gen")
 
 pluginManagement {
     val kotlinVersion: String by settings
