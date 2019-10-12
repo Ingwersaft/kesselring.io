@@ -4,6 +4,8 @@ import com.amazonaws.services.cloudfront.model.CreateInvalidationRequest
 import com.amazonaws.services.cloudfront.model.InvalidationBatch
 import com.amazonaws.services.cloudfront.model.Paths
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
+import com.amazonaws.services.s3.model.ObjectMetadata
+import com.amazonaws.services.s3.model.PutObjectRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.File
 import java.time.LocalDateTime
@@ -29,7 +31,16 @@ fun main(args: Array<String>) {
             it.key
         }
 
-    s3.putObject(bucketName, "$prefix$targetName", jackson.writeValueAsString(keys))
+    keys.forEach { println(it) }
+    val payload = jackson.writeValueAsString(keys)
+    val putObjectRequest =
+        PutObjectRequest(
+            bucketName,
+            "$prefix$targetName",
+            payload.byteInputStream(),
+            ObjectMetadata().apply { contentType = "text/plain; charset=utf-8" })
+    val putObject = s3.putObject(putObjectRequest)
+    println(putObject.contentMd5)
     println("written keys.json with ${keys.size} entries")
 
     val distId = File("${System.getProperty("user.home")}${File.separator}.kesselring-io-dist.txt").readText().trim()
