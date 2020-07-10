@@ -18,7 +18,7 @@ EOF
 }
 // these are the rights available inside the codebuild script, assumed buy the aws_iam_role role for the codebuild resource
 resource "aws_iam_role_policy" "codebuild_policy" {
-  role = "${aws_iam_role.codebuild_role.name}"
+  role = aws_iam_role.codebuild_role.name
 
   policy = <<POLICY
 {
@@ -58,7 +58,7 @@ resource "aws_codebuild_project" "build" {
   name = "${var.site-without-dots}-codebuild-project"
   description = "automatic codebuild project for ${var.site} managed by terraform"
   build_timeout = "10"
-  service_role = "${aws_iam_role.codebuild_role.arn}"
+  service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
@@ -74,20 +74,20 @@ resource "aws_codebuild_project" "build" {
     type = "LINUX_CONTAINER"
 
     environment_variable {
-      "name" = "S3_BUCKET"
-      "value" = "s3://${aws_s3_bucket.b.bucket}"
+      name = "S3_BUCKET"
+      value = "s3://${aws_s3_bucket.b.bucket}"
     }
     environment_variable {
-      "name" = "CLOUDFRONT_DISTRIBUTION_ID"
-      "value" = "${aws_cloudfront_distribution.cloudfront.id}"
+      name = "CLOUDFRONT_DISTRIBUTION_ID"
+      value = aws_cloudfront_distribution.cloudfront.id
     }
     environment_variable {
-      "name" = "SLACK_WEBHOOK"
-      "value" = "${var.slack-webhook}"
+      name = "SLACK_WEBHOOK"
+      value = var.slack-webhook
     }
     environment_variable {
-      "name" = "GITHUB_REPO_NAME"
-      "value" = "${var.github-repo}"
+      name = "GITHUB_REPO_NAME"
+      value = var.github-repo
     }
   }
 
@@ -99,10 +99,10 @@ resource "aws_codebuild_project" "build" {
       type = "OAUTH"
     }
   }
-  tags {
-    "type" = "${var.tag}"
+  tags = {
+    type = var.tag
   }
 }
 resource "aws_codebuild_webhook" "github-hook" {
-  project_name = "${aws_codebuild_project.build.name}"
+  project_name = aws_codebuild_project.build.name
 }

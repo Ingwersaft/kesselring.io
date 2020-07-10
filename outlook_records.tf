@@ -1,5 +1,5 @@
 resource "aws_route53_record" "mail_mx" {
-  zone_id = "${aws_route53_zone.dnszone.zone_id}"
+  zone_id = aws_route53_zone.dnszone.zone_id
   name = ""
   type = "MX"
 
@@ -10,7 +10,7 @@ resource "aws_route53_record" "mail_mx" {
   ttl = "3600"
 }
 resource "aws_route53_record" "mail_cname" {
-  zone_id = "${aws_route53_zone.dnszone.zone_id}"
+  zone_id = aws_route53_zone.dnszone.zone_id
   name = "autodiscover.${var.site}"
   type = "CNAME"
 
@@ -21,7 +21,7 @@ resource "aws_route53_record" "mail_cname" {
   ttl = "3600"
 }
 resource "aws_route53_record" "mail_txt" {
-  zone_id = "${aws_route53_zone.dnszone.zone_id}"
+  zone_id = aws_route53_zone.dnszone.zone_id
   name = ""
   type = "TXT"
 
